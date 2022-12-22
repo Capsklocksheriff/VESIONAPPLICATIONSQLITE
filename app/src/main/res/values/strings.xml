@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VESIONAPPLICATIONSQLITE</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="googleApi">AIzaSyB2L5VON6gfeibjTj_4xmd02fTecyLtx7o</string>
+</resources>
