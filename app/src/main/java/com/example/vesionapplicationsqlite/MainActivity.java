@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Email = (EditText)findViewById(R.id.editEmail);
         Password = (EditText)findViewById(R.id.editPassword);
 
+
         sqLiteHelper = new SQLiteHelper(this);
 
 
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.example.vesionapplicationsqlite.MapsActivity.class);
                 startActivity(intent);
                 finish();
 

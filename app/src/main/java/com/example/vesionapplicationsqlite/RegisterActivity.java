@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,15 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText Email, Password, Name ;
+    EditText Email, Password, Name , Age, Address, ContactNumber;
     Button Register;
-    String NameHolder, EmailHolder, PasswordHolder;
+    String NameHolder, EmailHolder, PasswordHolder, AgeHolder, AddressHolder, ContactNumberHolder;
     Boolean EditTextEmptyHolder;
     SQLiteDatabase sqLiteDatabaseObj;
     String SQLiteDataBaseQueryHolder ;
     SQLiteHelper sqLiteHelper;
     Cursor cursor;
     String F_Result = "Not_Found";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,9 @@ public class RegisterActivity extends AppCompatActivity {
         Email = (EditText)findViewById(R.id.editEmail);
         Password = findViewById(R.id.editPassword);
         Name = (EditText)findViewById(R.id.editName);
+        Age = (EditText)findViewById(R.id.editAge);
+        Address = (EditText)findViewById(R.id.editAddress);
+        ContactNumber = (EditText)findViewById(R.id.editContactNumber);
 
         sqLiteHelper = new SQLiteHelper(this);
 
@@ -70,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
     // SQLite table build method.
     public void SQLiteTableBuild() {
 
-        sqLiteDatabaseObj.execSQL("CREATE TABLE IF NOT EXISTS " + SQLiteHelper.TABLE_NAME + "(" + SQLiteHelper.Table_Column_ID + " PRIMARY KEY AUTOINCREMENT NOT NULL, " + SQLiteHelper.Table_Column_1_Name + " VARCHAR, " + SQLiteHelper.Table_Column_2_Email + " VARCHAR, " + SQLiteHelper.Table_Column_3_Password + " VARCHAR);");
+        sqLiteDatabaseObj.execSQL("CREATE TABLE IF NOT EXISTS " + SQLiteHelper.TABLE_NAME + "(" + SQLiteHelper.Table_Column_ID + " PRIMARY KEY AUTOINCREMENT NOT NULL, " + SQLiteHelper.Table_Column_1_Name + " VARCHAR, " + SQLiteHelper.Table_Column_2_Email + " VARCHAR, " + SQLiteHelper.Table_Column_3_Password + " VARCHAR, " +SQLiteHelper.Table_Column_4_Age + " VARCHAR , " + SQLiteHelper.Table_Column_5_Address + " VARCHAR , "+ SQLiteHelper.Table_Column_6_ContactNumber + " VARCHAR);");
 
     }
 
@@ -82,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         {
 
             // SQLite query to insert data into table.
-            SQLiteDataBaseQueryHolder = "INSERT INTO "+SQLiteHelper.TABLE_NAME+" (name,email,password) VALUES('"+NameHolder+"', '"+EmailHolder+"', '"+PasswordHolder+"');";
+            SQLiteDataBaseQueryHolder = "INSERT INTO "+SQLiteHelper.TABLE_NAME+" (name,email,password,age,address,contactnumber) VALUES('"+NameHolder+"', '"+EmailHolder+"', '"+PasswordHolder+"', '"+AgeHolder+"', '"+AddressHolder+"', '"+ContactNumberHolder+"');";
 
             // Executing query.
             sqLiteDatabaseObj.execSQL(SQLiteDataBaseQueryHolder);
@@ -113,6 +117,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         Password.getText().clear();
 
+        Age.getText().clear();
+
+        Address.getText().clear();
+
+        ContactNumber.getText().clear();
+
     }
 
     // Method to check EditText is empty or Not.
@@ -122,8 +132,11 @@ public class RegisterActivity extends AppCompatActivity {
         NameHolder = Name.getText().toString() ;
         EmailHolder = Email.getText().toString();
         PasswordHolder = Password.getText().toString();
+        AgeHolder = Age.getText().toString();
+        AddressHolder = Address.getText().toString();
+        ContactNumberHolder = ContactNumber.getText().toString();
 
-        EditTextEmptyHolder = !TextUtils.isEmpty(NameHolder) && !TextUtils.isEmpty(EmailHolder) && !TextUtils.isEmpty(PasswordHolder);
+        EditTextEmptyHolder = !TextUtils.isEmpty(NameHolder) && !TextUtils.isEmpty(EmailHolder) && !TextUtils.isEmpty(PasswordHolder) && !TextUtils.isEmpty(AgeHolder) && !TextUtils.isEmpty(AddressHolder) && !TextUtils.isEmpty(ContactNumberHolder) ;
     }
 
     // Checking Email is already exists or not.

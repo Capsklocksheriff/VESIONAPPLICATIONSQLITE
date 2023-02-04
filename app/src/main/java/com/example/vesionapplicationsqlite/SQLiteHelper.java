@@ -1,8 +1,6 @@
 package com.example.vesionapplicationsqlite;
 
-/**
- * Created by Juned on 3/13/2017.
- */
+
 
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -22,6 +20,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public static final String Table_Column_3_Password="password";
 
+    public static final String Table_Column_4_Age="age";
+
+    public static final String Table_Column_5_Address="address";
+
+    public static final String Table_Column_6_ContactNumber="contactnumber";
+
     public SQLiteHelper(Context context) {
 
         super(context, DATABASE_NAME, null, 1);
@@ -31,7 +35,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
-        String CREATE_TABLE="CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ("+Table_Column_ID+" INTEGER PRIMARY KEY, "+Table_Column_1_Name+" VARCHAR, "+Table_Column_2_Email+" VARCHAR, "+Table_Column_3_Password+" VARCHAR)";
+        String CREATE_TABLE="CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ("+Table_Column_ID+" INTEGER PRIMARY KEY, "+Table_Column_1_Name+" VARCHAR, "+Table_Column_2_Email+" VARCHAR, "+Table_Column_3_Password+" VARCHAR, "+ Table_Column_4_Age+" VARCHAR, "+Table_Column_5_Address+" VARCHAR, "+Table_Column_6_ContactNumber+" VARCHAR)";
         database.execSQL(CREATE_TABLE);
 
     }
